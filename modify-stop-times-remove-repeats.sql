@@ -31,7 +31,7 @@
 
     (2) Either:
         (a) Run from the shell:
-            "psql  < modify-stop-times-remove-repeats.sql"
+            "psql -f modify-stop-times-remove-repeats.sql"
         (b) Start psql, open any database, and then run from psql.
             "\i modify-stop-times-remove-repeats.sql"
 
