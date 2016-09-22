@@ -20,7 +20,7 @@
     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
     DEALINGS IN THE SOFTWARE.  
     
-    This is a PostgrSQL psql script file.
+    This is a PostgreSQL psql script file.
 
     To use, 
 
@@ -29,29 +29,37 @@
 
     (1) Customize the :gtfs_dir to find your stop_times.txt file
 
-    (2) Either:
-        (a) Run from the shell:
-            "psql -f modify-stop-times-remove-repeats.sql"
-        (b) Start psql, open any database, and then run from psql.
-            "\i modify-stop-times-remove-repeats.sql"
+    (2) Create an empty PostgreSQL database, and connect to it. 
+    
+        By default, this script does all its work using temporary tables so
+        there should be no modification of data stored in the database it
+        connects to, but better safe than sorry.
+    
+    (3) 
+        Either:
+            (a) Run from the shell:
+                "psql -f modify-stop-times-remove-repeats.sql"
 
-    (3) Verify stop_times_without_repeats.txt looks good, then copy it over
+            (b) Start psql, open any database, and then run from psql.
+                "\i modify-stop-times-remove-repeats.sql"
+
+    (4) Verify stop_times_without_repeats.txt looks good, then copy it over
         stop_times.txt from the shell:
+
             "cp stop_times_without_repeats.txt stop_times.txt"
 
 
-    (4) Create a new gtfs.zip file with updated stop_times.txt
+    (5) Create a new gtfs.zip file with updated stop_times.txt
         In Linux:
+
             "zip gtfs.zip *.txt"
 
     [...]
 
-    (5) Profit.
+    (6) Profit.
 
  */
 
-
-select current_database();
 
 /*
     :gtfs_dir controls where we find gtfs files, such as stop_times.txt.
